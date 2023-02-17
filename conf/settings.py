@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # local
     'api.apps.ApiConfig',
     'chats.apps.ChatsConfig',
+    'frontend.apps.FrontendConfig',
 ]
 
 MIDDLEWARE = [
@@ -140,6 +141,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Site ID
 # https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-SITE_ID
+
+# Static file directories
+# https://docs.djangoproject.com/en/3.1/ref/settings/#staticfiles-dirs
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
+REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
 
 SITE_ID = 1
 

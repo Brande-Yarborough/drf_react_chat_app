@@ -28,4 +28,5 @@ urlpatterns = [
 
     # loads chats
     path('api_v1/', include('api.urls')),
+    path('', include('frontend.urls')),
 ]
