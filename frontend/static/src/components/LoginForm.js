@@ -21,6 +21,7 @@ function LoginForm(props) {
     }));
   };
   const handleError = (err) => {
+    console.log("testing");
     console.warn(err);
   };
   const handleSubmit = async (e) => {
