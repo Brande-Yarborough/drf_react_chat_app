@@ -56,8 +56,8 @@ function App() {
   const addMessage = async () => {
     const message = {
       text: "Welcome to the channel.",
-      channel: "What do I put here?", //replace with what should go here
-      author: "Do I need this here?", //replace with what should go here
+      channel: 1, 
+      author: 1, 
     };
     const options = {
       method: "POST",

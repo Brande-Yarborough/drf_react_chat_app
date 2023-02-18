@@ -5,7 +5,7 @@ from .views import ChannelListAPIView, MessageListAPIView, ChannelDetailAPIView,
 urlpatterns = [
     # integer that has primary key
     path('<int:pk>', ChannelDetailAPIView.as_view()),
-    path('', ChannelListAPIView.as_view()),
+    path('channels/', ChannelListAPIView.as_view()),
     path('messages/', MessageListAPIView.as_view()),
     path('messages/<int:pk>/', MessageDetailAPIView.as_view()),
 ]
