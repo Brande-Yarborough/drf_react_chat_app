@@ -45,6 +45,42 @@ function LoginForm(props) {
     //when logout, need to remove cookie
     props.setAuth(true);
   };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="username"></label>
+      <input
+        id="username"
+        type="text"
+        placeholder="Enter username"
+        name="username"
+        value={state.username}
+        onChange={handleInput}
+      />
+
+      <label htmlFor="email"></label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Enter email"
+        name="email"
+        value={state.email}
+        onChange={handleInput}
+      />
+
+      <label htmlFor="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="password"
+        name="password"
+        value={state.password}
+        onChange={handleInput}
+      />
+
+      <button type="submit">Login</button>
+    </form>
+  );
 }
 
 export default LoginForm;
