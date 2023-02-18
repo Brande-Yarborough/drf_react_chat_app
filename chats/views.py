@@ -15,9 +15,23 @@ class ChannelListAPIView(generics.ListCreateAPIView):
     serializer_class = ChannelSerializer
 
 
+class ChannelDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Channel.objects.all()
+    serializer_class = ChannelSerializer
+
+
 # API end point to show all messages, List gets many records
 class MessageListAPIView(generics.ListCreateAPIView):
     # what am i getting,  go to chats table and get all objects or chats
     queryset = Message.objects.all()
     # what it looks like, this is how you need to return them
+    serializer_class = MessageSerializer
+
+    # target for post request
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+
+class MessageDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Message.objects.all()
     serializer_class = MessageSerializer
