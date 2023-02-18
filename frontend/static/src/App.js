@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     const getChannels = async () => {
-      const response = await fetch("/api_v1/chats/");
+      const response = await fetch("/api_v1/chats/channels/");
 
       if (!response.ok) {
         throw new Error("Network response was not OK");
@@ -35,7 +35,7 @@ function App() {
       body: JSON.stringify(channel),
     };
 
-    const response = await fetch("/api_v1/chats/", options);
+    const response = await fetch("/api_v1/chats/channels/", options);
     if (!response.ok) {
       throw new Error("Network response not OK");
     }
