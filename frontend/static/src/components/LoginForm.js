@@ -46,6 +46,7 @@ function LoginForm(props) {
     Cookies.set("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
     //when logout, need to remove cookie
     props.setAuth(true);
+    
   };
 
   return (

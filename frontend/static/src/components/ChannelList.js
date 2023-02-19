@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
-function ChatList() {
+function ChannelList() {
   // const [chats, setChats] = useState(null); //use null because it is falsy
   const [channels, setChannels] = useState(null);
-  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const getChannels = async () => {
@@ -52,31 +51,6 @@ function ChatList() {
     <li key={channel.id}>{channel.title}</li>
   ));
 
-  const addMessage = async () => {
-    const message = {
-      text: "Welcome to the channel.",
-      channel: 1, 
-      author: 1, 
-    };
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": Cookies.get("csrftoken"),
-      },
-      body: JSON.stringify(message),
-    };
-
-    const response = await fetch("/api_v1/chats/messages/", options);
-    if (!response.ok) {
-      throw new Error("Network response not OK");
-    }
-
-    const data = await response.json();
-    console.log({ data });
-    setMessages([...messages, data]);
-  };
-
   return (
     <div className="App">
       <h1>Sup Instant Messenger</h1>
@@ -84,12 +58,8 @@ function ChatList() {
       <button type="button" onClick={addChannel}>
         Add channel
       </button>
-      <button type="button" onClick={addMessage}>
-        Add message
-      </button>
     </div>
   );
 }
 
-
-export default ChatList;
+export default ChannelList;
