@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 const INITIAL_STATE = {
   username: "",
@@ -21,7 +23,6 @@ function LoginForm(props) {
     }));
   };
   const handleError = (err) => {
-    console.log("testing");
     console.warn(err);
   };
   const handleSubmit = async (e) => {
@@ -48,39 +49,85 @@ function LoginForm(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username"></label>
-      <input
-        id="username"
-        type="text"
-        placeholder="Enter username"
-        name="username"
-        value={state.username}
-        onChange={handleInput}
-      />
+    // <form onSubmit={handleSubmit}>
 
-      <label htmlFor="email"></label>
-      <input
-        id="email"
-        type="email"
-        placeholder="Enter email"
-        name="email"
-        value={state.email}
-        onChange={handleInput}
-      />
+    //   <label htmlFor="username"></label>
+    //   <input
+    //     id="username"
+    //     type="text"
+    //     placeholder="Enter username"
+    //     name="username"
+    //     value={state.username}
+    //     onChange={handleInput}
+    //   />
 
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        placeholder="password"
-        name="password"
-        value={state.password}
-        onChange={handleInput}
-      />
+    //   <label htmlFor="email"></label>
+    //   <input
+    //     id="email"
+    //     type="email"
+    //     placeholder="Enter email"
+    //     name="email"
+    //     value={state.email}
+    //     onChange={handleInput}
+    //   />
 
-      <button type="submit">Login</button>
-    </form>
+    //   <label htmlFor="password">Password</label>
+    //   <input
+    //     id="password"
+    //     type="password"
+    //     placeholder="password"
+    //     name="password"
+    //     value={state.password}
+    //     onChange={handleInput}
+    //   />
+
+    //   <button type="submit">Login</button>
+    // </form>
+<>
+<h1>Sup Instant Messenger</h1>
+
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="formBasicUsername">
+        <Form.Label>Username</Form.Label>
+        <Form.Control
+        //   id="username"
+          type="text"
+          placeholder="Enter username"
+          name="username"
+          value={state.username}
+          onChange={handleInput}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email Address</Form.Label>
+        <Form.Control
+        //   id="email"
+          type="email"
+          placeholder="Enter email"
+          name="email"
+          value={state.email}
+          onChange={handleInput}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+        //   id="password"
+          type="password"
+          placeholder="Enter password"
+          name="password"
+          value={state.password}
+          onChange={handleInput}
+        />
+      </Form.Group>
+
+      <Button variant="primary" type="submit">
+        Login
+      </Button>
+    </Form>
+    </>
   );
 }
 
