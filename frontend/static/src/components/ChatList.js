@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 function ChatList() {
   // const [chats, setChats] = useState(null); //use null because it is falsy
   const [channels, setChannels] = useState(null);
-  const [messages, setMessages] = useState(null);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const getChannels = async () => {
