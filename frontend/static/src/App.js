@@ -8,6 +8,7 @@ import RegistrationForm from "./components/Registration Form";
 function App() {
   const [isAuth, setAuth] = useState(!!Cookies.get("Authorization"));
   //if don't have auth cookie it will be set to false, if do have it will be true
+  const [selection, setSelection] = useState("a");
 
   const handleLogout = async () => {
     const options = {
@@ -62,11 +63,12 @@ function App() {
   
   //if true show Chatlist, if false show loginform
   console.log(isAuth)
-  return<> {isAuth ? <div><ChatList /> <button type="button" onClick={handleLogout}>Logout</button></div> : <div><LoginForm setAuth={setAuth}/> 
+  return<> 
+  {isAuth ? <div><ChatList /> <button type="button" onClick={handleLogout}>Logout</button></div> : <div><LoginForm setAuth={setAuth}/> 
 </div> }
-{<Button variant="primary" type="submit" >
+{!isAuth ? <Button variant="primary" type="submit" >
   Sign Up
-</Button>}
+</Button> : null}
 </>;
 
   
