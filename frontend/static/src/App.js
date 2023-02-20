@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import ChannelList from "./components/ChannelList";
 import LoginForm from "./components/LoginForm";
 import RegistrationForm from "./components/Registration Form";
+import MessageList from "./components/MessageList";
 
 function App() {
   const [isAuth, setAuth] = useState(!!Cookies.get("Authorization"));
@@ -67,7 +68,7 @@ function App() {
     <>
       {isAuth ? (
         <div>
-          <ChannelList />{" "}
+          <ChannelList /> <MessageList />
           <Button variant="primary" type="button" onClick={handleLogout}>
             Logout
           </Button>{" "}

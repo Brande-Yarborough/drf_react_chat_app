@@ -22,7 +22,7 @@ function MessageList() {
   }, []);
 
   const messagesHTML = messages.map((message) => (
-    <li key={message.id}>{message.title}</li>
+    <div key={message.id}>{message.title}</div>
   ));
 
   const addMessage = async () => {
@@ -60,7 +60,6 @@ function MessageList() {
       </button>
       </div> */}
 
-    <h1>Sup Instant Messenger</h1>
       {messagesHTML}
       <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
