@@ -1,4 +1,5 @@
-import {useState} from "react";
+import "./App.css";
+import { useState } from "react";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import ChannelList from "./components/ChannelList";
@@ -60,22 +61,29 @@ function App() {
   //   console.warn(err);
   // };
 
-
-
-  
   //if true show Chatlist, if false show loginform
-  console.log(isAuth)
-  return<> 
-  {isAuth ? <div><ChannelList /> <Button variant="primary" type="button" onClick={handleLogout}>
-  Logout
-</Button> </div> : <div><LoginForm setAuth={setAuth}/> 
-</div> }
-{!isAuth ? <Button variant="primary" type="submit" >
-  Sign Up
-</Button> : null}
-</>;
-
-  
+  console.log(isAuth);
+  return (
+    <>
+      {isAuth ? (
+        <div>
+          <ChannelList />{" "}
+          <Button variant="primary" type="button" onClick={handleLogout}>
+            Logout
+          </Button>{" "}
+        </div>
+      ) : (
+        <div>
+          <LoginForm setAuth={setAuth} />
+        </div>
+      )}
+      {!isAuth ? (
+        <Button variant="primary" type="submit">
+          Sign Up
+        </Button>
+      ) : null}
+    </>
+  );
 }
 
 export default App;

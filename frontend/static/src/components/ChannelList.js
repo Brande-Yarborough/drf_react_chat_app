@@ -1,9 +1,9 @@
+import "../App.css";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
-
+import icon1 from "../assets/sup.jpg";
 
 function ChannelList() {
   // const [chats, setChats] = useState(null); //use null because it is falsy
@@ -57,7 +57,7 @@ function ChannelList() {
 
   return (
     <>
-    {/* <div className="App">
+      {/* <div className="App">
       <h1>Sup Instant Messenger</h1>
       {channelsHTML}
       <button type="button" onClick={addChannel}>
@@ -65,19 +65,23 @@ function ChannelList() {
       </button>
     </div> */}
 
-    <h1>Sup Instant Messenger</h1>
-    {channelsHTML}
+      <h1>
+        <img className="sup-icon" src={icon1} alt="sup icon" />
+        Sup Instant Messenger
+      </h1>
 
-<Form>
-<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-  <Form.Control as="textarea" rows={2} placeholder="Channel" />
-</Form.Group>
+      {channelsHTML}
 
-<Button type="button" variant="primary" onClick={addChannel}>
-  Add Channel
-</Button>
-</Form>
-</>
+      <Form>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Control as="textarea" rows={2} placeholder="Channel" />
+        </Form.Group>
+
+        <Button type="button" variant="primary" onClick={addChannel}>
+          Add Channel
+        </Button>
+      </Form>
+    </>
   );
 }
 

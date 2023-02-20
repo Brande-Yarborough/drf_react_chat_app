@@ -2,6 +2,7 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import icon1 from "../assets/sup.jpg";
 
 const INITIAL_STATE = {
   username: "",
@@ -46,7 +47,6 @@ function LoginForm(props) {
     Cookies.set("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
     //when logout, need to remove cookie
     props.setAuth(true);
-    
   };
 
   return (
@@ -84,50 +84,53 @@ function LoginForm(props) {
 
     //   <button type="submit">Login</button>
     // </form>
-<>
-<h1>Sup Instant Messenger</h1>
+    <>
+      <h1>
+        <img className="sup-icon" src={icon1} alt="sup icon" />
+        Sup Instant Messenger
+      </h1>
 
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicUsername">
-        <Form.Label>Username</Form.Label>
-        <Form.Control
-        //   id="username"
-          type="text"
-          placeholder="Enter username"
-          name="username"
-          value={state.username}
-          onChange={handleInput}
-        />
-      </Form.Group>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicUsername">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            //   id="username"
+            type="text"
+            placeholder="Enter username"
+            name="username"
+            value={state.username}
+            onChange={handleInput}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email Address</Form.Label>
-        <Form.Control
-        //   id="email"
-          type="email"
-          placeholder="Enter email"
-          name="email"
-          value={state.email}
-          onChange={handleInput}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
+            //   id="email"
+            type="email"
+            placeholder="Enter email"
+            name="email"
+            value={state.email}
+            onChange={handleInput}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-        //   id="password"
-          type="password"
-          placeholder="Enter password"
-          name="password"
-          value={state.password}
-          onChange={handleInput}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            //   id="password"
+            type="password"
+            placeholder="Enter password"
+            name="password"
+            value={state.password}
+            onChange={handleInput}
+          />
+        </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Login
-      </Button>
-    </Form>
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+      </Form>
     </>
   );
 }
