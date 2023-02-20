@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function MessageList() {
   const [messages, setMessages] = useState([]);
@@ -49,13 +51,28 @@ function MessageList() {
   };
 
   return (
-    <div className="App">
-      <h1>Sup Instant Messenger</h1>
+    <>
+      {/* <div className="App">
+        <h1>Sup Instant Messenger</h1>
       {messagesHTML}
       <button type="button" onClick={addMessage}>
         Add message
       </button>
-    </div>
+      </div> */}
+
+    <h1>Sup Instant Messenger</h1>
+      {messagesHTML}
+      <Form>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          {/* <Form.Label>Example textarea</Form.Label> */}
+          <Form.Control as="textarea" rows={3} placeholder="Message" />
+        </Form.Group>
+
+        <Button type="button" variant="primary" onClick={addMessage}>
+          Send
+        </Button>
+      </Form>
+    </>
   );
 }
 

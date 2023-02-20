@@ -66,7 +66,9 @@ function App() {
   //if true show Chatlist, if false show loginform
   console.log(isAuth)
   return<> 
-  {isAuth ? <div><ChannelList /> <button type="button" onClick={handleLogout}>Logout</button></div> : <div><LoginForm setAuth={setAuth}/> 
+  {isAuth ? <div><ChannelList /> <Button variant="primary" type="button" onClick={handleLogout}>
+  Logout
+</Button> </div> : <div><LoginForm setAuth={setAuth}/> 
 </div> }
 {!isAuth ? <Button variant="primary" type="submit" >
   Sign Up
