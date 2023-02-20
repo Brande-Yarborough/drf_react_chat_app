@@ -8,4 +8,12 @@
 
 .btn-primary {
   margin-bottom: 20px;
+  margin-left: 10px;
+  background-color: black;
+  border-color: black;
+}
+
+.btn-primary:hover {
+  background-color: #41464b;
+  border-color: black;
 }
