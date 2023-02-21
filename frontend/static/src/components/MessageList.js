@@ -3,14 +3,16 @@ import Cookies from "js-cookie";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function MessageList() {
+function MessageList({ selectedChannel }) {
   const [messages, setMessages] = useState([]);
   //for handleNewMessage
   const [message, setMessage] = useState("");
 
   useEffect(() => {
     const getMessages = async () => {
-      const response = await fetch("/api_v1/chats/messages/");
+      const response = await fetch(
+        `/api_v1/chats/messages/?channel=${selectedChannel}`
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not OK");
@@ -21,7 +23,7 @@ function MessageList() {
     };
     //call getMessages
     getMessages();
-  }, []);
+  }, [selectedChannel]);
 
   const messagesHTML = messages.map((message) => (
     <div key={message.id}>{message.text}</div>
@@ -36,7 +38,6 @@ function MessageList() {
     const newMessage = {
       text: message,
       channel: 1,
-      author: 1,
     };
 
     const options = {

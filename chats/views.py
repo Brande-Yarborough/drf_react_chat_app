@@ -23,11 +23,21 @@ class ChannelDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 # API end point to show all messages, List gets many records
 class MessageListAPIView(generics.ListCreateAPIView):
     # what am i getting,  go to chats table and get all objects or chats
-    queryset = Message.objects.all()
+    # queryset = Message.objects.all()
     # what it looks like, this is how you need to return them
     serializer_class = MessageSerializer
 
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases
+        for the currently authenticated user.
+        """
+        # https://www.django-rest-framework.org/api-guide/filtering/#filtering-against-query-parameters
+        channel = self.request.query_params.get('channel')
+        return Message.objects.filter(channel=channel)
+
     # target for post request
+
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 

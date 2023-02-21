@@ -9,6 +9,7 @@ import MessageList from "./components/MessageList";
 
 function App() {
   const [isAuth, setAuth] = useState(!!Cookies.get("Authorization"));
+  const [selectedChannel, setSelectedChannel] = useState(null);
   //if don't have auth cookie it will be set to false, if do have it will be true
   //for toggle button on sign up-take to registration form
   // const [signUp, setSignUp] = useState(true);
@@ -68,7 +69,8 @@ function App() {
     <>
       {isAuth ? (
         <div>
-          <ChannelList /> <MessageList />
+          <ChannelList setSelectedChannel={setSelectedChannel} />{" "}
+          {selectedChannel && <MessageList selectedChannel={selectedChannel} />}
           <Button variant="primary" type="button" onClick={handleLogout}>
             Logout
           </Button>{" "}

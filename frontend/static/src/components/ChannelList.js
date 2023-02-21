@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import icon1 from "../assets/sup.jpg";
 import Nav from "react-bootstrap/Nav";
 
-function ChannelList() {
+function ChannelList({ setSelectedChannel }) {
   // const [chats, setChats] = useState(null); //use null because it is falsy
   //shows channel list from fetch request
   const [channels, setChannels] = useState(null);
@@ -23,12 +23,14 @@ function ChannelList() {
       const data = await response.json();
       //method to get Chats
       setChannels(data);
+      setSelectedChannel(data[0].id);
     };
     //call getChats
     getChannels();
   }, []);
 
-  const addChannel = async () => {
+  const addChannel = async (event) => {
+    event.preventDefault();
     // const channel = {
     //   title: "A channel added from React",
     // };
@@ -53,7 +55,8 @@ function ChannelList() {
     const data = await response.json();
     // console.log({ data });
     setChannels([...channels, data]);
-    setChannel(""); //reset state
+    setChannel("");
+    setSelectedChannel(data.id);
   };
 
   if (!channels) {
@@ -63,7 +66,7 @@ function ChannelList() {
   const channelsHTML = channels.map((channel) => (
     // <li key={channel.id}>{channel.title}</li>
     // <div key={channel.id}>
-    <Nav.Item key={channel.id}>
+    <Nav.Item key={channel.id} onClick={() => setSelectedChannel(channel.id)}>
       <Nav.Link>{channel.title}</Nav.Link>
     </Nav.Item>
     // </div>
@@ -88,7 +91,7 @@ function ChannelList() {
         Sup Instant Messenger
       </h1>
       <Nav>{channelsHTML}</Nav>
-      <Form>
+      <Form onSubmit={addChannel}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Control
             as="textarea"
@@ -99,7 +102,7 @@ function ChannelList() {
           />
         </Form.Group>
 
-        <Button type="button" variant="primary" onClick={addChannel}>
+        <Button type="submit" variant="primary">
           Add Channel
         </Button>
       </Form>
