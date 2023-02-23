@@ -29,7 +29,8 @@ function MessageList({ selectedChannel }) {
     <div key={message.id}>{message.text}</div>
   ));
 
-  const addMessage = async () => {
+  const addMessage = async (event) => {
+    event.preventDefault();
     // const message = {
     //   text: "Welcome to the channel.",
     //   channel: 1,
@@ -37,7 +38,7 @@ function MessageList({ selectedChannel }) {
     // };
     const newMessage = {
       text: message,
-      channel: 1,
+      channel: selectedChannel,
     };
 
     const options = {
@@ -49,7 +50,7 @@ function MessageList({ selectedChannel }) {
       body: JSON.stringify(newMessage),
     };
 
-    const response = await fetch("/api_v1/chats/messages/", options);
+    const response = await fetch(`/api_v1/chats/messages/`, options);
     if (!response.ok) {
       throw new Error("Network response not OK");
     }
@@ -76,7 +77,7 @@ function MessageList({ selectedChannel }) {
       </div> */}
 
       {messagesHTML}
-      <Form>
+      <Form onSubmit={addMessage}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           {/* <Form.Label>Example textarea</Form.Label> */}
           <Form.Control
@@ -88,7 +89,7 @@ function MessageList({ selectedChannel }) {
           />
         </Form.Group>
 
-        <Button type="button" variant="primary" onClick={addMessage}>
+        <Button type="submit" variant="primary">
           Send
         </Button>
       </Form>
