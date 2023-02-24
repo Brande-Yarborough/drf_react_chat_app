@@ -42,11 +42,17 @@ function LoginForm(props) {
     );
     if (!response.ok) {
       throw new Error("Network response was not OK");
+    } else {
+      // const response = await fetch("/dj-rest-auth/user/", options).catch(
+      //   handleError
+      // );
+      // console.log("admin data?", response)
+      const data = await response.json(); //when we login and are registered we get key
+      // console.log("user data?", data);
+      Cookies.set("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
+      //when logout, need to remove cookie
+      props.setPage("channelList");
     }
-    const data = await response.json(); //when we login and are registered we get key
-    Cookies.set("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
-    //when logout, need to remove cookie
-    props.setAuth(true);
   };
 
   return (
@@ -130,6 +136,18 @@ function LoginForm(props) {
         <Button variant="primary" type="submit">
           Login
         </Button>
+
+        <p>
+          Don't have an account? Click
+          <Button
+            type="button"
+            variant="link"
+            onClick={() => props.setPage("registration")}
+          >
+            here
+          </Button>
+          to register.
+        </p>
       </Form>
     </>
   );

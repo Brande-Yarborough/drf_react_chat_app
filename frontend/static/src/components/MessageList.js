@@ -20,6 +20,7 @@ function MessageList({ selectedChannel }) {
       const data = await response.json();
       //method to get Messages
       setMessages(data);
+      console.log(data);
     };
     //call getMessages
     getMessages();
@@ -50,13 +51,13 @@ function MessageList({ selectedChannel }) {
       body: JSON.stringify(newMessage),
     };
 
-    const response = await fetch(`/api_v1/chats/messages/`, options);
+    const response = await fetch("/api_v1/chats/messages/", options);
     if (!response.ok) {
       throw new Error("Network response not OK");
     }
 
     const data = await response.json();
-    console.log({ data });
+    // console.log({ data });
     setMessages([...messages, data]);
     //clears new message form back out
     setMessage("");
