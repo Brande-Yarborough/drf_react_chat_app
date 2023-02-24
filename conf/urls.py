@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from accounts.views import CustomRegisterView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,7 +24,10 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     # put this above frontend
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    # path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    # path for registration since dj-rest-auth no longer gives back token
+    path('dj-rest-auth/registration/', CustomRegisterView.as_view()),
+
 
     # loads chats
     path('api_v1/', include('api.urls')),

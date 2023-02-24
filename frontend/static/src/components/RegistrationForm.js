@@ -13,6 +13,11 @@ const INITIAL_STATE = {
 function RegistrationForm(props) {
   const [state, setState] = useState(INITIAL_STATE);
 
+  // const [name, setName] = useState("Brande");
+
+  //   for password1, password2 error
+  const [error, setError] = useState(null);
+
   const handleInput = (e) => {
     const { name, value } = e.target; //value of this inside event listener is event.target, value of this in fat arrow is LoginForm
     setState((prevState) => ({
@@ -28,6 +33,11 @@ function RegistrationForm(props) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (state.password1 !== state.password2) {
+      setError("Passwords do not match!");
+      return;
+    }
 
     const options = {
       method: "POST",
@@ -70,10 +80,12 @@ function RegistrationForm(props) {
           <Form.Control
             //   id="password"
             type="password"
+            id="password1"
             placeholder="Enter password 1"
-            name="password"
+            name="password1"
             value={state.password1}
             onChange={handleInput}
+            required
           />
         </Form.Group>
 
@@ -82,11 +94,14 @@ function RegistrationForm(props) {
           <Form.Control
             //   id="password"
             type="password"
+            id="password2"
             placeholder="Enter password 2"
-            name="password"
+            name="password2"
             value={state.password2}
             onChange={handleInput}
+            required
           />
+          <div style={{ color: "red" }}>{error}</div>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
