@@ -8,6 +8,9 @@ from dj_rest_auth.registration.serializers import RegisterSerializer
 
 
 class CustomTokenSerializer(TokenSerializer):
+    # have access to user through token serializer, user.username is instance of new user
+    # Read only field:A field class that simply returns the value of the field without modification.
+    # https://www.django-rest-framework.org/api-guide/fields/#readonlyfield
     username = serializers.ReadOnlyField(source="user.username")
 
     class Meta(TokenSerializer.Meta):

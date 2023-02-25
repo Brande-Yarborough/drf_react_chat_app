@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from .models import Channel, Message
 from .serializers import ChannelSerializer, MessageSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .permissions import IsAuthorOrReadOnly
 
 # ListAPIView is prewired to accept get requests
 
@@ -13,11 +15,14 @@ class ChannelListAPIView(generics.ListCreateAPIView):
     queryset = Channel.objects.all()
     # what it looks like, this is how you need to return them
     serializer_class = ChannelSerializer
+    # get request is read only and is allowed, if doing put, post, patch or delete request must be authenticated and logged in
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class ChannelDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
+    permission_classes = (IsAuthorOrReadOnly,)
 
 
 # API end point to show all messages, List gets many records
@@ -26,6 +31,8 @@ class MessageListAPIView(generics.ListCreateAPIView):
     # queryset = Message.objects.all()
     # what it looks like, this is how you need to return them
     serializer_class = MessageSerializer
+    # get request is read only and is allowed, if doing put, post, patch or delete request must be authenticated and logged in
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         """
@@ -45,3 +52,4 @@ class MessageListAPIView(generics.ListCreateAPIView):
 class MessageDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
+    permission_classes = (IsAuthorOrReadOnly,)

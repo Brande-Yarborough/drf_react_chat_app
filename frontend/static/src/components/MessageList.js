@@ -24,6 +24,7 @@ function MessageList({ selectedChannel }) {
     };
     //call getMessages
     getMessages();
+    console.log(`/api_v1/chats/messages/?channel=${selectedChannel}`);
   }, [selectedChannel]);
 
   const messagesHTML = messages.map((message) => (

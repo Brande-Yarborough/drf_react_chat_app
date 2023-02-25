@@ -57,6 +57,16 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -155,3 +165,8 @@ SITE_ID = 1
 # https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-EMAIL_BACKEND
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+REST_AUTH = {
+    'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
+
+}
