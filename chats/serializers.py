@@ -19,4 +19,4 @@ class MessageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Message
-        fields = '__all__'  # do I need all here or text, channel, author?
+        fields = '__all__'

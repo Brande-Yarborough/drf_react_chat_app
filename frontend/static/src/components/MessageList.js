@@ -27,10 +27,6 @@ function MessageList({ selectedChannel }) {
     console.log(`/api_v1/chats/messages/?channel=${selectedChannel}`);
   }, [selectedChannel]);
 
-  const messagesHTML = messages.map((message) => (
-    <div key={message.id}>{message.text}</div>
-  ));
-
   const addMessage = async (event) => {
     event.preventDefault();
     // const message = {
@@ -64,9 +60,46 @@ function MessageList({ selectedChannel }) {
     setMessage("");
   };
 
+  const deleteMessage = async (event) => {
+    const id = event.currentTarget.value;
+    const options = {
+      method: "DELETE",
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+      },
+    };
+
+    const response = await fetch(`/api_v1/chats/messages/${id}`, options);
+    if (!response.ok) {
+      throw new Error("Network response not OK");
+    } else {
+      console.log(response);
+      //create shallow copy of messages
+      let updatedMessages = [...messages];
+      //find index of message we want to delete
+      const index = updatedMessages.findIndex((x) => x.id == id);
+      //removing message from array
+      updatedMessages.splice(index, 1);
+      //reset state with updatedMessages
+      setMessages(updatedMessages);
+    }
+  };
+
   const handleNewMessage = (event) => {
     setMessage(event.target.value);
   };
+
+  const messagesHTML = messages.map((message) => (
+    <div key={message.id}>
+      <div>{message.text}</div>
+      {message.is_author ? (
+        <button value={message.id} onClick={deleteMessage}>
+          delete message
+        </button>
+      ) : null}
+      {message.is_author ? <button>edit message</button> : null}
+    </div>
+  ));
 
   return (
     <>
