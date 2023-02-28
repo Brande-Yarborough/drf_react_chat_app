@@ -15,7 +15,7 @@ function App() {
   // const [signUp, setSignUp] = useState(true);
   // const [selection, setSelection] = useState("a");
   const [page, setPage] = useState(
-    !!Cookies.get("Authorization") ? "login" : "channelList"
+    !!Cookies.get("Authorization") ? "channelList" : "login"
   );
 
   const handleLogout = async () => {

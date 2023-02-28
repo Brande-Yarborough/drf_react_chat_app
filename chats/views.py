@@ -16,7 +16,7 @@ class ChannelListAPIView(generics.ListCreateAPIView):
     # what it looks like, this is how you need to return them
     serializer_class = ChannelSerializer
     # get request is read only and is allowed, if doing put, post, patch or delete request must be authenticated and logged in
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    # permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class ChannelDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
